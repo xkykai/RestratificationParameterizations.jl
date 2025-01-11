@@ -49,7 +49,7 @@ function find_max(a...)
   return maximum(maximum.([a...]))
 end
 
-grid = RectilinearGrid(CPU(), Float64,
+grid = RectilinearGrid(GPU(), Float64,
                        size = (Nx, Ny, Nz),
                        halo = (size_halo, size_halo, size_halo),
                        x = (0, Lx),
