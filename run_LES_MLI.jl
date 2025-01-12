@@ -103,7 +103,7 @@ set!(model, b=b_initial_noisy, v=v_initial)
 b = model.tracers.b
 u, v, w = model.velocities
 
-Δt₀ = Lz / Nz / abs(M² / f) / 10
+Δt₀ = 0.01
 simulation = Simulation(model, Δt=Δt₀, stop_time=2days)
 
 wizard = TimeStepWizard(max_change=1.05, max_Δt=100, cfl=0.6)
