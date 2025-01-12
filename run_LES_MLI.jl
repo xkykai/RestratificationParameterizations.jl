@@ -106,7 +106,7 @@ u, v, w = model.velocities
 Δt₀ = Lz / Nz / abs(M² / f) / 10
 simulation = Simulation(model, Δt=Δt₀, stop_time=2days)
 
-wizard = TimeStepWizard(max_change=1.05, max_Δt=1000, cfl=0.6)
+wizard = TimeStepWizard(max_change=1.05, max_Δt=100, cfl=0.6)
 simulation.callbacks[:wizard] = Callback(wizard, IterationInterval(10))
 
 wall_clock = [time_ns()]
@@ -129,7 +129,7 @@ function print_progress(sim)
     return nothing
 end
 
-simulation.callbacks[:print_progress] = Callback(print_progress, IterationInterval(1))
+simulation.callbacks[:print_progress] = Callback(print_progress, IterationInterval(100))
 
 function init_save_some_metadata!(file, model)
     file["metadata/author"] = "Xin Kai Lee"
