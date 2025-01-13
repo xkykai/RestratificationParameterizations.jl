@@ -35,7 +35,7 @@ const f = 1e-4
 const N² = 9e-5
 const M² = -4.24e-7
 
-FILE_NAME = "MLI_test"
+FILE_NAME = "MLI_test_8days"
 FILE_DIR = "./LES/$(FILE_NAME)"
 mkpath(FILE_DIR)
 
@@ -104,7 +104,7 @@ b = model.tracers.b
 u, v, w = model.velocities
 
 Δt₀ = 0.01
-simulation = Simulation(model, Δt=Δt₀, stop_time=2days)
+simulation = Simulation(model, Δt=Δt₀, stop_time=8days)
 
 wizard = TimeStepWizard(max_change=1.05, max_Δt=100, cfl=0.6)
 simulation.callbacks[:wizard] = Callback(wizard, IterationInterval(10))
@@ -191,7 +191,7 @@ simulation.output_writers[:timeseries] = JLD2OutputWriter(model, timeseries_outp
 #                                                           with_halos = true,
 #                                                           init = init_save_some_metadata!)
 
-# simulation.output_writers[:checkpointer] = Checkpointer(model, schedule=TimeInterval(args["checkpoint_interval"]days), prefix="$(FILE_DIR)/model_checkpoint")
+simulation.output_writers[:checkpointer] = Checkpointer(model, schedule=TimeInterval(2days), prefix="$(FILE_DIR)/model_checkpoint")
 
 # if pickup
 #     files = readdir(FILE_DIR)
